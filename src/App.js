@@ -149,7 +149,7 @@ function App() {
         variant='extended' 
         aria-label="add new task"
         onClick={handleClickOpen}
-        sx={{ mb: 1, position: 'fixed', right: 16, bottom: '4rem', display: { xs: newTaskDialogOpen ? 'none' : 'inline-block', sm: 'none' } }}
+        sx={{ mb: 1, position: 'fixed', right: 16, bottom: '4rem', display: { xs: newTaskDialogOpen ? 'none' : 'flex', sm: 'none' } }}
       >
         <AddIcon sx={{ mr: 1 }} />
         New Task

@@ -149,14 +149,14 @@ function App() {
         variant='extended' 
         aria-label="add new task"
         onClick={handleClickOpen}
-        sx={{ mb: 1, position: 'fixed', right: 16, bottom: '4rem', display: { sm: 'none' } }}
+        sx={{ mb: 1, position: 'fixed', right: 16, bottom: '4rem', display: { xs: newTaskDialogOpen ? 'none' : 'block', sm: 'none' } }}
       >
         <AddIcon sx={{ mr: 1 }} />
         New Task
       </Fab>
       <DeleteNoteSnackbar deleteNoteOpen={deleteNoteOpen} handleDeleteNoteClose={handleDeleteNoteClose} restoreTask={restoreTask} />
       <BottomNavigation
-        sx={{ position: 'fixed', right: 0, bottom: 0, left: 0, display: { sm: 'none' } }}
+        sx={{ position: 'fixed', right: 0, bottom: 0, left: 0, display: { xs: newTaskDialogOpen ? 'none' : 'block', sm: 'none' } }}
         showLabels
         value={bottomNavValue}
         onChange={handleFilterChange}

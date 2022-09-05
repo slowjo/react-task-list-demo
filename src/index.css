@@ -6,3 +6,21 @@
 /* .css-12i7wg6-MuiPaper-root-MuiDrawer-paper svg {
     color: white;
 } */
+
+.task-animate-enter {
+    opacity: 0;
+  }
+
+.task-animate-enter-active {
+    opacity: 1;
+    transition: opacity 300ms;
+}
+
+.task-animate-exit {
+    opacity: 1;
+}
+
+.task-animate-exit-active {
+    opacity: 0;
+    transition: opacity 300ms;
+}

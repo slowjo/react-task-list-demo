@@ -10,15 +10,24 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CheckIcon from '@mui/icons-material/Check';
 import ClearIcon from '@mui/icons-material/Clear';
 import CardActions from '@mui/material/CardActions';
+import { CSSTransition } from 'react-transition-group';
+import Divider from '@mui/material/Divider';
 
-function Task({ task, toggleCompleted, deleteTask }) {
+function Task({ task, toggleCompleted, deleteTask, index, ...rest }) {
   const [expanded, setExpanded] = React.useState(false);
+
+  const nodeRef = React.useRef();
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
-  return (
+  return (  
+    <CSSTransition timeout={500} nodeRef={nodeRef} classNames="task-animate" {...rest} unmountOnExit>
+    <div ref={nodeRef}>
+    {index > 0 && (
+    <Divider />
+    )}
     <Card elevation={0} sx={{ minWidth: 275 }}>
       <CardHeader
         sx={{ textDecoration: task.completed ? 'line-through' : 'none' }}
@@ -53,6 +62,8 @@ function Task({ task, toggleCompleted, deleteTask }) {
         </CardContent>
       </Collapse>
     </Card>
+    </div>
+    </CSSTransition>
   );
 }
 

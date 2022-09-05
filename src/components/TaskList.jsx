@@ -4,11 +4,11 @@ import Box from '@mui/material/Box';
 import NewTaskDialog from './NewTaskDialog';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
-import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import AddIcon from '@mui/icons-material/Add';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
+import { TransitionGroup } from 'react-transition-group';
 
 const TaskList =  ({ tasks, openTaskCount, addTask, toggleCompleted, newTaskDialogOpen, handleClickOpen, handleClose, bottomNavValue, handleFilterChange, anyTasks, deleteTask }) => {
     return (
@@ -40,14 +40,12 @@ const TaskList =  ({ tasks, openTaskCount, addTask, toggleCompleted, newTaskDial
                 </Tabs>
             </Box>
             <Box sx={{ width: '100%' }}>
+                <TransitionGroup>
                     {tasks.map((task, index) => (
-                        <div key={task.id}>
-                            {index > 0 && (
-                                <Divider />
-                            )}
-                            <Task task={task} toggleCompleted={toggleCompleted} deleteTask={deleteTask} />
-                        </div>
-                    ))}
+                        <Task task={task} toggleCompleted={toggleCompleted} deleteTask={deleteTask} index={index} key={task.id} />
+                    )
+                    )}
+                </TransitionGroup>    
             </Box>
         </Card>
         </>

@@ -61,7 +61,10 @@ function App() {
   const [bottomNavValue, setBottomNavValue] = useState('all');
 
   const handleFilterChange = (event, newValue) => {
-    setBottomNavValue(newValue);
+    setDisplayedTasks([]);
+    setTimeout(() => {
+      setBottomNavValue(newValue);
+    }, 500);
   };
 
   useEffect(() => {

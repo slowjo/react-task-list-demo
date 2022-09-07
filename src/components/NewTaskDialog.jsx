@@ -55,7 +55,6 @@ export default function FormDialog({ addTask, handleClose, newTaskDialogOpen }) 
             name="taskName"
           />
           <TextField
-            autoFocus
             margin="dense"
             id="taskCategory"
             label="Category"

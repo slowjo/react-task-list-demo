@@ -1,18 +1,16 @@
-import Task from './Task';
 import * as React from 'react';
+import Task from './Task';
 import Box from '@mui/material/Box';
 import NewTaskDialog from './NewTaskDialog';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import IconButton from '@mui/material/IconButton';
 import AddIcon from '@mui/icons-material/Add';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
+import MyTabs from './MyTabs';
 import { TransitionGroup } from 'react-transition-group';
 
-const TaskList =  ({ tasks, openTaskCount, addTask, toggleCompleted, newTaskDialogOpen, handleClickOpen, handleClose, bottomNavValue, handleFilterChange, anyTasks, deleteTask }) => {
+const TaskList =  ({ tasks, openTaskCount, addTask, toggleCompleted, newTaskDialogOpen, handleClickOpen, handleClose, bottomNavValue, handleFilterChange, deleteTask }) => {
     return (
-        <>
         <Card elevation={0}>
             <CardHeader
                 title="My Tasks"
@@ -29,16 +27,7 @@ const TaskList =  ({ tasks, openTaskCount, addTask, toggleCompleted, newTaskDial
                 }
             />
             <NewTaskDialog addTask={addTask} handleClickOpen={handleClickOpen} handleClose={handleClose} newTaskDialogOpen={newTaskDialogOpen} />
-            <Box sx={{ borderBottom: 1, borderColor: 'divider', display: { xs: 'none', sm: 'block' } }}>
-                <Tabs 
-                    value={bottomNavValue}
-                    onChange={handleFilterChange}  
-                >
-                    <Tab label='All' value="all" />
-                    <Tab label='Open' value="uncompletd" />
-                    <Tab label='Completed' value="completed" />
-                </Tabs>
-            </Box>
+            <MyTabs bottomNavValue={bottomNavValue} handleFilterChange={handleFilterChange} />
             <Box sx={{ width: '100%' }}>
                 <TransitionGroup>
                     {tasks.map((task, index) => (
@@ -48,7 +37,6 @@ const TaskList =  ({ tasks, openTaskCount, addTask, toggleCompleted, newTaskDial
                 </TransitionGroup>    
             </Box>
         </Card>
-        </>
     );
 };
 

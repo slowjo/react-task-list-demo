@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import ButtonAppBar from './components/ButtonAppBar';
 import TaskList from './components/TaskList';
 import NewTaskForm from './components/NewTaskForm';
-import DeleteNoteSnackbar from './components/DeleteNoteSnackbar';
 import NotificationSnackbar from './components/NotificationSnackbar';
 import useTasksLogic from './customhooks/useTasksLogic';
 import useModalsLogic from './customhooks/useModalsLogic';
@@ -12,10 +11,12 @@ import ContentLayoutBox from './components/ContentLayoutBox';
 import useBottomNav from './customhooks/useBottomNav';
 
 function App() {
-  const { tasks, addTask, toggleCompleted, deleteTask, restoreTask, deleteNoteOpen, handleDeleteNoteClose, notificationOpen, handleNotificationClose, notificationSeverity, notificationMessage, } = useTasksLogic();
+  const { tasks, addTask, toggleCompleted, deleteTask, notificationOpen, handleNotificationClose, notificationSeverity, notificationMessage, notificationButtonAction, } = useTasksLogic();
 
   const openTaskCount = tasks.filter((task) => !task.completed).length;
   const anyTasks = tasks.length > 0;
+
+  console.log(tasks);
 
   const { mobileOpen, handleDrawerToggle, newTaskDialogOpen, handleClickOpen, handleClose } = useModalsLogic();
 
@@ -59,8 +60,7 @@ function App() {
       <ButtonAppBar mobileOpen={mobileOpen} handleDrawerToggle={handleDrawerToggle} drawerWidth={drawerWidth} />
       <ContentLayoutBox leftPanelContent={leftPanel} rightPanelContent={rightPanel} />
       <NewTaskFab handleClickOpen={handleClickOpen} newTaskDialogOpen={newTaskDialogOpen} />
-      <DeleteNoteSnackbar deleteNoteOpen={deleteNoteOpen} handleDeleteNoteClose={handleDeleteNoteClose} restoreTask={restoreTask} />
-      <NotificationSnackbar severity={notificationSeverity} message={notificationMessage} open={notificationOpen} handleClose={handleNotificationClose} />
+      <NotificationSnackbar severity={notificationSeverity} message={notificationMessage} open={notificationOpen} handleClose={handleNotificationClose} buttonAction={notificationButtonAction} />
       <MyBottomNav newTaskDialogOpen={newTaskDialogOpen} bottomNavValue={bottomNavValue} handleFilterChange={handleFilterChange} anyTasks={anyTasks} />
     </div>
   );
